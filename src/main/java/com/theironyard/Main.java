@@ -1,5 +1,11 @@
 package com.theironyard;
 
+import java.time.Month;
+import java.time.MonthDay;
+import java.time.format.DateTimeFormatter;
+
+import static com.sun.tools.javac.util.Constants.format;
+
 /**
  * For this exercise you will be creating a new class, SignificantDate, that can
  * be used to calculate the days until a given date (such as Valentine's Day,
@@ -11,8 +17,10 @@ package com.theironyard;
  */
 public class Main {
 
+
     public static void main(String[] args) {
 
+         MonthDay MITCHELL_BIRTHDAY = MonthDay.of(Month.DECEMBER, 24);
         /*
             In this main() method you should make use of your SignificantDate
             class. Use the next() method to find and print the next instance of
@@ -24,7 +32,7 @@ public class Main {
 
             Here is some valid example output:
 
-            There are 354 days until the next occurrence of Christmas on 12/25/2017
+            There are days until the next occurrence of Christmas on
             There are 1150 days until the next occurrence of Leap Year on 2/29/2020
             There are 338 days until the next occurrence of my birthday on 12/9/2017
 
@@ -53,16 +61,26 @@ public class Main {
          */
 
         // todo: create a new DateTimeFormatter in a variable named formatter
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/y");
 
         // todo: print the number of days to and the date of the next occurrence of a constant date defined in SignificantDate (other than leap year). EG: Valentines Day
 
-
+        System.out.printf("There are %s days until the next occurrence of Christmas on %s\n",
+               SignificantDate.daysTo(SignificantDate.CHRISTMAS),
+                SignificantDate.next(SignificantDate.CHRISTMAS).format(formatter));
         // todo: print the number of days to and date of the next occurrence of leap year
 
+        System.out.printf("There are %s days until the next occurrence of leap year on %s\n",
+                SignificantDate.daysTo(SignificantDate.LEAP_YEAR),
+                SignificantDate.next(SignificantDate.LEAP_YEAR).format(formatter));
 
         // todo: print the number of days to and date of any arbitrary MonthDate that is not defined as a constant in SignificantDate. EG: your birthday
 
+        System.out.printf("There are %s days until the next occurrence of my birthday on %s\n",
+                SignificantDate.daysTo(MITCHELL_BIRTHDAY),
+                SignificantDate.next(MITCHELL_BIRTHDAY).format(formatter));
+
+   //the s" inputs the date and the "n" adds a line to the print out.
 
     }
 

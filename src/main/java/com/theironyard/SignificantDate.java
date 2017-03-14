@@ -1,5 +1,12 @@
 package com.theironyard;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.MonthDay;
+import java.time.temporal.ChronoUnit;
+
+
+
 /**
  * This class provides a set of static properties and methods used to calculate
  * when holidays and other significant dates fall and how many days there are
@@ -11,6 +18,8 @@ package com.theironyard;
  * Follow the instructions below to create the class.
  */
 public class SignificantDate {
+
+
 
     /**
      * Start this class by creating a set of read only static properties that
@@ -31,7 +40,7 @@ public class SignificantDate {
      * - New Years Eve: December 31st
      *
      * Be sure to give each of these properties a reasonable name that follows
-     * convention. For example, GROUNDHOG_DAY.
+     * convention. For example, GROUNDHOG_DAY. BECAUSE THEY ARE IMMUTABLE CANT BE CHANGED
      *
      * The MonthDay class is consistent with the rest of the java.time package
      * in that you can't simply create am instance using the new keyword.
@@ -53,17 +62,28 @@ public class SignificantDate {
      * MonthDay.of(Month.FEBRUARY, 2);
      */
 
+
+
+
+
+
     // todo: create a New Years Day property
+    public static final MonthDay NEW_YEARS_DAY = MonthDay.of(Month.JANUARY, 1);
 
     // todo: create a Valentines Day property
+    public static final MonthDay VALENTINES_DAY = MonthDay.of(Month.FEBRUARY, 14);
 
     // todo: create a Leap Year property
+    public static final MonthDay LEAP_YEAR = MonthDay.of(Month.FEBRUARY, 29);
 
     // todo: create a Fourth of July property
+    public static final MonthDay FOURTH_OF_JULY = MonthDay.of(Month.JULY, 4);
 
     // todo: create a Christmas property
+    public static final MonthDay CHRISTMAS = MonthDay.of(Month.DECEMBER, 25);
 
     // todo: create a New Years Eve property
+    public static final MonthDay NEW_YEARS_EVE = MonthDay.of(Month.DECEMBER, 31);
 
     /**
      * The next() method returns a LocalDate object that represents the date of
@@ -77,6 +97,9 @@ public class SignificantDate {
      * @return The next occurrence of the specified date
      */
     // todo: Implement the next() method by following the instructions below
+public static LocalDate next(MonthDay date) {
+
+
 
 
         /*
@@ -86,16 +109,16 @@ public class SignificantDate {
 
             http://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html#now--
          */
-        // todo: create a variable named now
-
+    // todo: create a variable named now
+    LocalDate now = LocalDate.now();
 
         /*
             The LocalDate class has a method on it, getYear(), that will return
             the year as an integer. Use that to create a new variable named
             "year".
          */
-        // todo: create a variable named year
-
+    // todo: create a variable named year
+    int year = now.getYear();
 
         /*
             Now that we know the year, we need to find the next valid occurrence
@@ -130,17 +153,39 @@ public class SignificantDate {
             Keep in mind that if we're at January 3 2017, the next instance of
             Valentines Day is still this year and the next occurrence of New
             Years Day is in 2018.
+
+           // date == the date to find (IE: July 4th)
+           // year == the year were check(initially 2017)
+           // now == today(LocalDate)
          */
-        // todo: loop while the MonthDate is not valid for the specified year or the MonthDate for this year is not after today
 
-            // todo: increment the year variable so we can try the subsequent year
+    // 1 get the monthAndDate for the current year
+
+    //LocalDate theDateInCurrentYear = aMonthAndDayToFindInTheFuture.atYear(theCurrentYear);
+    LocalDate dateForYear = date.atYear(year);
+    boolean isValidForThisYear = date.isValidYear(year);
+    boolean isInFuture = dateForYear.isAfter(now);
+    // todo: loop while the MonthDate is not valid for the specified year or the MonthDate for this year is not after today
 
 
+    while (!(dateForYear.isAfter(now)) || !(date.isValidYear(year))) {
+
+
+        dateForYear = date.atYear(year);
+
+
+        // todo: increment the year variable so we can try the subsequent year
+
+        year = year + 1;
 
         // once you've found the next instance of the date, return it!
         // todo: return the next occurrence of the specified date
 
+    }
+        return date.atYear(year);
 
+
+}
 
     /**
      * Create a static method name daysTo() that accepts a MonthDay argument
@@ -155,13 +200,21 @@ public class SignificantDate {
      */
     // todo: create the daysTo() method
 
+    public static long daysTo(MonthDay date){
+        LocalDate nextDate = next(date);
+        long numDays = java.time.temporal.ChronoUnit.DAYS.between(LocalDate.now(), nextDate);
 
-        /*
+
+        return numDays;
+
+
+
+       /*
             We already have a method named next() that will give us the next
             occurrence of a specified date. Use that method to get the next
             occurrence of the MonthDay. Store this in a variable named nextDate.
          */
-        // todo: create nextDate variable and set it to the next instance of the date
+    // todo: create nextDate variable and set it to the next instance of the date
 
 
         /*
@@ -180,9 +233,9 @@ public class SignificantDate {
 
             DAYS.between() returns a long.
          */
-        // todo: return the number of days between today and the nextDate
-
-
+    // todo: return the number of days between today and the nextDate
 
 
 }
+
+        }
