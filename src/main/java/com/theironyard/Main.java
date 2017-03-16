@@ -4,7 +4,7 @@ import java.time.Month;
 import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 
-import static com.sun.tools.javac.util.Constants.format;
+
 
 /**
  * For this exercise you will be creating a new class, SignificantDate, that can
@@ -32,7 +32,7 @@ public class Main {
 
             Here is some valid example output:
 
-            There are days until the next occurrence of Christmas on
+            There are 35434 days until the next occurrence of Christmas on 12/25/2017
             There are 1150 days until the next occurrence of Leap Year on 2/29/2020
             There are 338 days until the next occurrence of my birthday on 12/9/2017
 
